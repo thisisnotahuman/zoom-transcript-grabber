@@ -2,7 +2,6 @@
 
 <img src="./avatar2.jpg" alt="Frosty" width="100">
 
-
 **Zoom Transcript Grabber** is a lightweight macOS GUI tool that helps you **extract and save real-time captions** from Zoom recording pages with just a few clicks.
 
 ## 🎯 Features
@@ -20,6 +19,36 @@
 3. Once captions are detected, click `Export Transcript`  
 
 > If the caption panel fails to load, the app will guide you to restart the process.
+
+## 🧪 Developer Guide
+
+### ▶️ Run Script Directly
+
+If you'd like to run the Puppeteer subtitle collector directly (e.g., without the GUI), use the following command in your terminal:
+
+```bash
+npx electron gui_launcher.js
+```
+
+Make sure to install dependencies first:
+
+```bash
+npm install
+```
+
+### 🛠 Build macOS App (Electron)
+
+To package this project into a macOS `.app` using Electron Forge:
+
+```bash
+rm -rf node_modules package-lock.json out
+npm install
+npm run make
+```
+
+The built app will appear in the `out/` directory.
+
+> For notarization and DMG creation, refer to Apple's Developer ID documentation and `create-dmg` tool.
 
 ## ☕ Support Me
 
