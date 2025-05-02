@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules/
+
+# Output directories
+out/
+make/
+
+# Build artifacts
+*.zip
+*.dmg
+
+# System files
+.DS_Store
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VSCode settings (optional)
+.vscode/

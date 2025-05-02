@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Zoom Transcript Grabber</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen;
+      background-color: #f7f7f7;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: white;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 480px;
+    }
+
+    .cat-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      border: 2px solid #ff9800;
+      outline: none;
+      margin-bottom: 6px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0px;
+    }
+
+    button {
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    #startBtn, #exportBtn {
+      width: 160px;
+      height: 42px;
+      padding: 10px 14px;
+    }
+
+    #startBtn {
+      background-color: #3f51b5;
+      color: white;
+    }
+
+    #startBtn:hover {
+      background-color: #303f9f;
+    }
+
+    #exportBtn {
+      background-color: #e0e0e0;
+    }
+
+    #exportBtn:hover {
+      background-color: #bdbdbd;
+    }
+
+    .tooltip-button,
+    .donate-button {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      max-width: 42px;
+      max-height: 42px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .tooltip-button {
+      background-color: #fafafa;
+      border: 2px solid #ff9800;
+      cursor: default;
+    }
+
+    .donate-button {
+      background-color: #fffbe6;
+      border: 2px solid gold;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .donate-button:hover {
+      background-color: #fff1b8;
+    }
+
+    .tooltip-button:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 115%;
+      right: -215%;
+      background-color: #333;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      z-index: 10;
+      width: 160px;
+      white-space: pre-wrap;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .donate-button:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 115%;
+      right: -75%;
+      background-color: #333;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      z-index: 10;
+      width: 160px;
+      white-space: pre-wrap;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="cat-img" src="avatar2.jpg" alt="British Shorthair Cat">
+    <input type="text" id="zoomUrl" placeholder="Paste the Zoom video link">
+    <div class="button-group">
+      <button id="startBtn">Start Listening</button>
+      <button id="exportBtn">Export Transcript</button>
+      <button class="tooltip-button" data-tooltip="1. Maximum speed: 1.5.
+2. Outputs are in desktop.
+3. Export right after opening. Restart if the file is empty.
+4. Frosty is the cutest creature in the world.">?</button>
+      <button class="donate-button" data-tooltip="Like what I’m doing? Buy me a coffee:) ☕" onclick="openDonation()">💰</button>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer, shell } = require('electron');
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      const url = document.getElementById('zoomUrl').value;
+      if (url.trim()) {
+        ipcRenderer.send('START_LISTENING', url.trim());
+      }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      ipcRenderer.send('EXPORT_TRANSCRIPT');
+    });
+
+    function openDonation() {
+      shell.openExternal('https://buymeacoffee.com/lalalands');
+    }
+  </script>
+</body>
+</html>

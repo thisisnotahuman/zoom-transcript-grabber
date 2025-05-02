@@ -1,0 +1,49 @@
+{
+  "name": "zoom-transcript-grabber",
+  "version": "1.0.0",
+  "description": "A desktop app to grab Zoom audio transcripts via Puppeteer",
+  "main": "gui_launcher.js",
+  "scripts": {
+    "start": "electron .",
+    "make": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false npm install && electron-forge make"
+  },
+  "keywords": [],
+  "author": "XavierJ",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-dmg": "^7.8.0",
+    "@electron-forge/maker-zip": "^7.8.0",
+    "electron": "^27.1.1"
+  },
+  "dependencies": {
+    "puppeteer": "^22.5.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "avatar"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "win32"
+          ]
+        }
+      ]
+    }
+  }
+}
