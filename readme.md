@@ -1,6 +1,7 @@
 # 🍦 Zoom Transcript Grabber
 
-![Frosty](./avatar2.jpg)
+<img src="./avatar2.jpg" alt="Frosty" width="100">
+
 
 **Zoom Transcript Grabber** is a lightweight macOS GUI tool that helps you **extract and save real-time captions** from Zoom recording pages with just a few clicks.
 
