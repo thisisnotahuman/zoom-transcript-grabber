@@ -58,4 +58,4 @@ If you find this tool helpful, feel free to support me:
 
 ---
 
-🧊 Built with ❤️ by Xiaoyang and Frosty
+🪻 Built with ❤️ by Xiaoyang and Frosty
